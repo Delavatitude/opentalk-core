@@ -6,7 +6,7 @@ import { setupStatus, validTimezone, validPublicUrl, DEFAULT_PUBLIC_URL } from "
 import BookingTypesTab from "./BookingTypesTab";
 import AvailabilityTab from "./AvailabilityTab";
 import PagesTab from "./PagesTab";
-import { ArrowLeft, ArrowRight, CheckCircle2, Circle, Loader2, RefreshCw } from "lucide-react";
+import { ArrowLeft, ArrowRight, CheckCircle2, Circle, Loader2 } from "lucide-react";
 
 const input = "w-full min-h-11 rounded-xl border bg-background px-3 py-2 text-sm";
 const button = "min-h-11 rounded-xl border px-4 py-2 text-sm inline-flex items-center justify-center gap-2 hover:bg-secondary disabled:opacity-50";
@@ -160,7 +160,6 @@ export default function SetupGuide({ data, refresh, onCompleted }) {
       {message && <p role="status" className="text-sm text-primary">{message}</p>}
       <div className="border-t pt-4 flex flex-wrap justify-between gap-3">
         <button disabled={busy || step === 0} className={button} onClick={() => setStep(v => v - 1)}><ArrowLeft className="w-4 h-4"/>{copy("Précédent", "Previous")}</button>
-        <button disabled={busy} className={button} onClick={() => run(async () => { await refresh(); setMessage(copy("État actualisé.", "Status refreshed.")); })}><RefreshCw className="w-4 h-4"/>{copy("Actualiser l’état", "Refresh status")}</button>
         {step > 0 && step < 4 && <button disabled={busy} className={button} onClick={next}>{copy("Enregistrer dans le formulaire, puis continuer", "Save in the form, then continue")}<ArrowRight className="w-4 h-4"/></button>}
         {step === 4 && <button type="button" disabled={busy || !state.ready} onClick={finish} className={button + " bg-primary text-primary-foreground"}>{busy ? <Loader2 className="w-4 h-4 animate-spin"/> : <CheckCircle2 className="w-4 h-4"/>}{copy("Valider mon lien et terminer", "Validate my booking link and finish")}</button>}
       </div>
