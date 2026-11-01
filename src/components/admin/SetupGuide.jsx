@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { api } from "@/api/client";
 import { useI18n } from "@/i18n/I18nContext";
-import { setupStatus, validTimezone, validPublicUrl } from "@/lib/setupStatus";
+import { setupStatus, validTimezone, validPublicUrl, DEFAULT_PUBLIC_URL } from "@/lib/setupStatus";
 import BookingTypesTab from "./BookingTypesTab";
 import AvailabilityTab from "./AvailabilityTab";
 import PagesTab from "./PagesTab";
@@ -34,7 +34,7 @@ export default function SetupGuide({ data, refresh, onCompleted }) {
   useEffect(() => { setVisitedSteps(previous => previous[step] ? previous : {...previous,[step]:true}); }, [step]);
   const [busy, setBusy] = useState(false), [message, setMessage] = useState(""), [error, setError] = useState("");
   const [probe, setProbe] = useState(null), [editingPage, setEditingPage] = useState(false);
-  const [form, setForm] = useState({ brand_name: state.values.brand_name || "", reference_timezone: state.values.reference_timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC", app_base_url: state.values.app_base_url || "" });
+  const [form, setForm] = useState({ brand_name: state.values.brand_name || "", reference_timezone: state.values.reference_timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC", app_base_url: state.values.app_base_url || DEFAULT_PUBLIC_URL });
   const [pageName, setPageName] = useState(state.root?.brand_label || state.values.brand_name || "");
   const labels = [
     copy("Votre activité", "Your business"),
@@ -136,7 +136,7 @@ export default function SetupGuide({ data, refresh, onCompleted }) {
       {step === 0 && <form onSubmit={saveBasics} className="space-y-4 max-w-xl">
         <label className="block text-sm">{copy("Nom de votre activité", "Business name")}<input required maxLength={100} className={input + " mt-1"} value={form.brand_name} onChange={e => setForm({...form,brand_name:e.target.value})}/></label>
         <label className="block text-sm">{copy("Fuseau des horaires", "Working hours timezone")}<input required className={input + " mt-1"} value={form.reference_timezone} placeholder="Europe/Paris" onChange={e => setForm({...form,reference_timezone:e.target.value})}/><span className="block text-xs text-muted-foreground mt-1">{copy("Exemples : Europe/Paris, America/Montreal, UTC.", "Examples: Europe/Paris, America/Montreal, UTC.")}</span></label>
-        <label className="block text-sm">{copy("Adresse publique de votre application", "Public application address")}<input required type="url" className={input + " mt-1"} value={form.app_base_url} placeholder="https://booking.example.com" onChange={e => setForm({...form,app_base_url:e.target.value})}/><span className="block text-xs text-muted-foreground mt-1">{copy("Utilisez l’adresse finale indiquée dans OpenTalk ou votre domaine personnalisé. Elle sert aux liens de gestion.", "Use the final address shown in OpenTalk or your custom domain. It is used for booking management links.")}</span></label>
+        <label className="block text-sm">{copy("Adresse publique de votre Talk", "Public Talk address")}<input required type="url" className={input + " mt-1"} value={form.app_base_url} placeholder={copy("https://talk.votre-domaine.fr", "https://talk.your-domain.com")} onChange={e => setForm({...form,app_base_url:e.target.value})}/><span className="block text-xs text-muted-foreground mt-1">{copy("Complétez avec votre domaine : https://talk.votre-domaine.fr. Cette adresse sert aux réservations et aux liens de gestion.", "Complete with your domain: https://talk.your-domain.com. This address is used for bookings and management links.")}</span></label>
         <button disabled={busy} className={button + " bg-primary text-primary-foreground"}>{copy("Enregistrer et continuer", "Save and continue")}</button>
       </form>}
       <div hidden={step !== 1}>{visitedSteps[1] && <BookingTypesTab/>}</div>

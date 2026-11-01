@@ -2,7 +2,7 @@ import {useEffect,useState} from "react";
 import {useLocation} from "react-router-dom";
 import {api} from "@/api/client";
 import {useI18n,localizedField} from "@/i18n/I18nContext";
-import {validTimezone,validPublicUrl} from "@/lib/setupStatus";
+import {validTimezone,validPublicUrl,DEFAULT_PUBLIC_URL} from "@/lib/setupStatus";
 import PagesTab from "./PagesTab";
 import IntegrationSettings from "./IntegrationSettings";
 import {Copy,ExternalLink,Loader2,RefreshCw} from "lucide-react";
@@ -35,7 +35,7 @@ export default function MyPageTab(){
    next.booking_type_ids=next.booking_type_ids || [];
    const values=Object.fromEntries(rows.map(row=>[row.key,row.value]));
    if(!next.brand_label)next.brand_label=values.brand_name || "";
-   const config={app_base_url:values.app_base_url || "",reference_timezone:values.reference_timezone || "UTC"};
+   const config={app_base_url:values.app_base_url || DEFAULT_PUBLIC_URL,reference_timezone:values.reference_timezone || "UTC"};
    setPage(root);setForm(next);setBasics(config);setTypes(response.data.types);setSettings(rows);setBaseline(JSON.stringify({form:next,basics:config}));
   }catch{setError(copy("Impossible de charger Ma page. Réessayez avant de modifier la configuration.","Unable to load My page. Retry before editing configuration."));}
   finally{setLoading(false);}
@@ -92,7 +92,7 @@ export default function MyPageTab(){
     <div className="grid sm:grid-cols-2 gap-4">
      <label className="text-sm">{copy("Nom de votre activité","Business name")}<input required maxLength={100} className={input} value={form.brand_label || ""} onChange={e=>set("brand_label",e.target.value)}/></label>
      <label className="text-sm">{copy("Logo — adresse de l’image","Logo image address")}<input type="url" className={input} placeholder="https://…" value={form.logo_url || ""} onChange={e=>set("logo_url",e.target.value)}/></label>
-     <label className="text-sm">{copy("Adresse publique de l’application","Public application address")}<input required type="url" className={input} value={basics.app_base_url} onChange={e=>setBasics({...basics,app_base_url:e.target.value})}/></label>
+     <label className="text-sm">{copy("Adresse publique de votre Talk","Public Talk address")}<input required type="url" className={input} value={basics.app_base_url} placeholder={copy("https://talk.votre-domaine.fr","https://talk.your-domain.com")} onChange={e=>setBasics({...basics,app_base_url:e.target.value})}/></label>
      <label className="text-sm">{copy("Fuseau de vos horaires","Working hours timezone")}<input required className={input} value={basics.reference_timezone} onChange={e=>setBasics({...basics,reference_timezone:e.target.value})}/></label>
      <label className="text-sm">{copy("Langue de la page","Page language")}<select className={input} value={form.language_mode} onChange={e=>set("language_mode",e.target.value)}><option value="auto">{copy("Français et anglais, selon le visiteur","French and English, based on visitor")}</option><option value="fr">Français</option><option value="en">English</option></select></label>
      <label className="text-sm">{copy("Couleur d’accent","Accent color")}<select className={input} value={form.accent_style} onChange={e=>set("accent_style",e.target.value)}>{["terracotta","sage","blue","plum"].map(value=><option key={value} value={value}>{value}</option>)}</select></label>

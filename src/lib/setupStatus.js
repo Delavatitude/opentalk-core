@@ -1,3 +1,5 @@
+export const DEFAULT_PUBLIC_URL = "https://talk.";
+
 export function validTimezone(value) {
   if (!value) return false;
   try { new Intl.DateTimeFormat("en", { timeZone: value }); return true; } catch { return false; }
@@ -6,7 +8,7 @@ export function validPublicUrl(value) {
   try {
     const url = new URL(value);
     const local = url.protocol === "http:" && ["localhost", "127.0.0.1", "[::1]"].includes(url.hostname);
-    return (url.protocol === "https:" || local) && !url.username && !url.password && url.pathname === "/" && !url.search && !url.hash;
+    return (url.protocol === "https:" || local) && !url.hostname.endsWith(".") && !url.username && !url.password && url.pathname === "/" && !url.search && !url.hash;
   } catch { return false; }
 }
 export function setupStatus({ settings = [], types = [], rules = [], pages = [] }) {

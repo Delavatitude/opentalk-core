@@ -46,6 +46,8 @@ test("hidden, inactive and unscheduled types cannot make a page ready", async ()
 test("invalid dates, times and duplicate homepages remain incomplete", async () => {
   const {setupStatus,validPublicUrl,validTimezone} = await moduleUnderTest();
   assert.equal(validPublicUrl("javascript:alert(1)"),false);
+  assert.equal(validPublicUrl("https://talk."),false);
+  assert.equal(validPublicUrl("https://talk.example.test"),true);
   assert.equal(validPublicUrl("http://localhost:5173"),true);
   assert.equal(validPublicUrl("http://127.0.0.1:3001"),true);
   assert.equal(validPublicUrl("http://example.test"),false);
