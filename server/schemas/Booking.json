@@ -1,0 +1,249 @@
+{
+  "name": "Booking",
+  "type": "object",
+  "properties": {
+    "google_import_snapshot": {
+      "type": "string"
+    },
+    "external_retry_at": {
+      "type": "string"
+    },
+    "external_observed": {
+      "type": "string"
+    },
+    "external_checked_at": {
+      "type": "string"
+    },
+    "external_sync_status": {
+      "type": "string"
+    },
+    "deletion_pending": {
+      "type": "boolean",
+      "default": false
+    },
+    "google_calendar_events": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "calendar_id": {
+            "type": "string"
+          },
+          "event_id": {
+            "type": "string"
+          },
+          "primary": {
+            "type": "boolean"
+          },
+          "status": {
+            "type": "string"
+          },
+          "error": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "wix_event_id": {
+      "type": "string"
+    },
+    "wix_sync_status": {
+      "type": "string"
+    },
+    "wix_sync_error": {
+      "type": "string"
+    },
+    "wix_synced_at": {
+      "type": "string"
+    },
+    "wix_create_attempted": {
+      "type": "boolean"
+    },
+    "phone_country": {
+      "type": "string"
+    },
+    "phone_calling_code": {
+      "type": "string"
+    },
+    "sms_error": {
+      "type": "string"
+    },
+    "sms_provider_message_id": {
+      "type": "string"
+    },
+    "sms_sent_at": {
+      "type": "string"
+    },
+    "notify_email": {
+      "type": "boolean",
+      "default": true
+    },
+    "notify_sms": {
+      "type": "boolean",
+      "default": false
+    },
+    "sms_status": {
+      "type": "string"
+    },
+    "booking_type_id": {
+      "type": "string",
+      "title": "Booking type ID"
+    },
+    "booking_type_name": {
+      "type": "string",
+      "title": "Booking type name"
+    },
+    "name": {
+      "type": "string",
+      "title": "Guest name"
+    },
+    "email": {
+      "type": "string",
+      "title": "Guest email",
+      "format": "email"
+    },
+    "company": {
+      "type": "string",
+      "title": "Company"
+    },
+    "context": {
+      "type": "string",
+      "title": "Context / topic"
+    },
+    "start_at": {
+      "type": "string",
+      "title": "Start (UTC ISO)",
+      "format": "date-time"
+    },
+    "end_at": {
+      "type": "string",
+      "title": "End (UTC ISO)",
+      "format": "date-time"
+    },
+    "timezone": {
+      "type": "string",
+      "title": "Guest timezone at booking time",
+      "default": "UTC"
+    },
+    "locale": {
+      "type": "string",
+      "title": "Booking locale",
+      "enum": [
+        "en",
+        "fr"
+      ],
+      "default": "en"
+    },
+    "status": {
+      "type": "string",
+      "title": "Status",
+      "enum": [
+        "confirmed",
+        "cancelled",
+        "rescheduled"
+      ],
+      "default": "confirmed"
+    },
+    "calendar_event_id": {
+      "type": "string",
+      "title": "Google Calendar event ID"
+    },
+    "meeting_url": {
+      "type": "string",
+      "title": "Meeting URL"
+    },
+    "cancel_token": {
+      "type": "string",
+      "title": "Cancel token"
+    },
+    "reschedule_token": {
+      "type": "string",
+      "title": "Reschedule token"
+    },
+    "booking_link_id": {
+      "type": "string",
+      "title": "Booking link ID"
+    },
+    "location_type": {
+      "type": "string",
+      "title": "Location type"
+    },
+    "location_value": {
+      "type": "string",
+      "title": "Location value"
+    },
+    "source": {
+      "type": "string",
+      "title": "Source (link slug or direct)"
+    },
+    "topic": {
+      "type": "string"
+    },
+    "duration": {
+      "type": "number"
+    },
+    "calendar_id": {
+      "type": "string"
+    },
+    "calendar_sync_status": {
+      "type": "string"
+    },
+    "notification_revision": {
+      "type": "string"
+    },
+    "contact_id": {
+      "type": "string"
+    },
+    "email_normalized": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "crm_sync_status": {
+      "type": "string"
+    },
+    "booking_page_id": {
+      "type": "string"
+    },
+    "context_key": {
+      "type": "string"
+    },
+    "call_outcome": {
+      "type": "string",
+      "title": "Call outcome",
+      "enum": [
+        "pending",
+        "completed",
+        "missed",
+        "postponed",
+        "no_show"
+      ],
+      "default": "pending"
+    },
+    "call_transcript": {
+      "type": "string",
+      "title": "Conversation script / transcript"
+    },
+    "call_summary": {
+      "type": "string",
+      "title": "Call summary (compte rendu)"
+    },
+    "call_notes_file_uri": {
+      "type": "string",
+      "title": "Private file containing full call notes"
+    },
+    "call_logged_at": {
+      "type": "string",
+      "title": "Call log recorded at (UTC ISO)",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "booking_type_id",
+    "name",
+    "email",
+    "start_at",
+    "end_at"
+  ]
+}

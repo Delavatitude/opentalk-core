@@ -1,0 +1,21 @@
+const fs=require("fs"),vm=require("vm"),assert=require("assert/strict");
+const source=fs.readFileSync("server/shared/googleBookingImport.ts","utf8").replace(/^import .*;\n/gm,"").replace(/export /g,"");
+const ctx={Date,AbortSignal,googleReferences:b=>b.google_calendar_events||[],fetch:()=>{throw Error("No live network");}};vm.createContext(ctx);vm.runInContext(source,ctx);
+const b={id:"b",status:"confirmed",start_at:"2026-09-14T08:30:00.000Z",end_at:"2026-09-14T09:00:00.000Z",calendar_sync_status:"synced",notify_email:true,notification_revision:"original",google_calendar_events:[{calendar_id:"a",event_id:"e",primary:true},{calendar_id:"b",event_id:"e"}]};
+const state=h=>({status:"active",start_at:"2026-09-14T"+h+":30:00.000Z",end_at:"2026-09-14T"+(Number(h)+1).toString().padStart(2,"0")+":00:00.000Z",meeting_url:""});
+const events=[{ref:b.google_calendar_events[0],state:state("10")},{ref:b.google_calendar_events[1],state:state("08")}];
+(async()=>{
+ const p=ctx.planGoogleImport(b,events);assert.equal(p.patch.start_at,state("10").start_at);assert.equal(p.patch.notification_revision,undefined);assert.equal(p.patch.notify_email,undefined);
+ assert.equal(ctx.planGoogleImport({...b,...p.patch},events).changed,false);
+ assert.throws(()=>ctx.planGoogleImport(b,[events[0],{...events[1],state:state("11")}]),/conflict/);
+ assert.throws(()=>ctx.remoteState({start:{date:"2026-09-14"},end:{date:"2026-09-15"}}),/all_day/);
+ let patches=[];const db={asServiceRole:{entities:{Booking:{get:async()=>b,update:async(id,p)=>patches.push(p)}}}};
+ const missing=await ctx.importGoogleBooking(db,b,"fake",async(u,o)=>{assert(!o.method || o.method==="GET");return {ok:false,status:404};});assert.equal(missing.status,"external_sync_missing");assert(!patches[0].status);
+ patches=[];await ctx.importGoogleBooking(db,b,"fake",async()=>({ok:false,status:429,headers:{get:()=>"120"}}));assert(Date.parse(patches[0].external_retry_at)>Date.now()+110000);
+ const cancel=ctx.planGoogleImport(b,[{ref:b.google_calendar_events[0],state:{status:"cancelled"}},events[1]]);assert.equal(cancel.patch.status,"cancelled");
+ db.asServiceRole.entities.Booking.get=async()=>({...b,start_at:"changed"});
+ const stale=await ctx.importGoogleBooking(db,b,"fake",async()=>({ok:true,json:async()=>({start:{dateTime:state("10").start_at},end:{dateTime:state("10").end_at}})}));assert.equal(stale.status,"external_sync_conflict");
+ db.asServiceRole.entities.Booking.get=async()=>({...b,start_at:b.start_at.replace(".000Z","+00:00"),end_at:b.end_at.replace(".000Z","+00:00")});
+ const equivalent=await ctx.importGoogleBooking(db,b,"fake",async()=>({ok:true,json:async()=>({start:{dateTime:state("10").start_at},end:{dateTime:state("10").end_at}})}));assert.equal(equivalent.status,"imported");
+ console.log("PASS: inbound move, stable repeat, conflict, all-day, missing event, explicit cancellation, Retry-After, concurrent edit; GET only, notification fields preserved. No live messages.");
+})().catch(e=>{console.error(e);process.exitCode=1;});

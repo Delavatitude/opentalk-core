@@ -1,0 +1,50 @@
+{
+  "name": "CalendarConnection",
+  "type": "object",
+  "properties": {
+    "provider": {
+      "type": "string",
+      "title": "Provider",
+      "enum": [
+        "google"
+      ],
+      "default": "google"
+    },
+    "account": {
+      "type": "string",
+      "title": "Account email"
+    },
+    "calendar_id": {
+      "type": "string",
+      "title": "Calendar ID"
+    },
+    "calendar_name": {
+      "type": "string",
+      "title": "Calendar display name"
+    },
+    "blocks_availability": {
+      "type": "boolean",
+      "title": "Blocks availability",
+      "default": true
+    },
+    "creates_events": {
+      "type": "boolean",
+      "title": "Creates events here",
+      "default": false
+    },
+    "active": {
+      "type": "boolean",
+      "title": "Active",
+      "default": true
+    },
+    "color": {
+      "type": "string",
+      "title": "Color (hex)"
+    }
+  },
+  "required": [
+    "provider",
+    "calendar_id",
+    "calendar_name"
+  ]
+}

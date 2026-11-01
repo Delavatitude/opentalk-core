@@ -1,0 +1,100 @@
+{
+  "name": "Contact",
+  "type": "object",
+  "properties": {
+    "phone_country": {
+      "type": "string"
+    },
+    "phone_calling_code": {
+      "type": "string"
+    },
+    "first_name": {
+      "type": "string"
+    },
+    "last_name": {
+      "type": "string"
+    },
+    "full_name": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string",
+      "format": "email"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "company": {
+      "type": "string"
+    },
+    "locale": {
+      "type": "string"
+    },
+    "timezone": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string"
+    },
+    "context": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "first_booking_at": {
+      "type": "string"
+    },
+    "last_booking_at": {
+      "type": "string"
+    },
+    "last_booking_type": {
+      "type": "string"
+    },
+    "last_meeting_url": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "updated_at": {
+      "type": "string"
+    },
+    "profile_updated_at": {
+      "type": "string"
+    },
+    "merged_into": {
+      "type": "string"
+    },
+    "total_bookings": {
+      "type": "number",
+      "default": 0
+    },
+    "contexts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "lead",
+        "active_client",
+        "partner",
+        "inactive"
+      ],
+      "default": "lead"
+    }
+  },
+  "required": [
+    "email",
+    "full_name"
+  ]
+}

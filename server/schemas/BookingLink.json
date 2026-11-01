@@ -1,0 +1,92 @@
+{
+  "name": "BookingLink",
+  "type": "object",
+  "properties": {
+    "slug": {
+      "type": "string",
+      "title": "Slug"
+    },
+    "title": {
+      "type": "string",
+      "title": "Title"
+    },
+    "context": {
+      "type": "string",
+      "title": "Context"
+    },
+    "company": {
+      "type": "string",
+      "title": "Company"
+    },
+    "contact_name": {
+      "type": "string",
+      "title": "Contact name"
+    },
+    "booking_type_id": {
+      "type": "string",
+      "title": "Booking type ID (empty = let user choose)"
+    },
+    "locale": {
+      "type": "string",
+      "title": "Default locale",
+      "enum": [
+        "en",
+        "fr"
+      ]
+    },
+    "valid_from": {
+      "type": "string",
+      "title": "Valid from (UTC ISO)",
+      "format": "date-time"
+    },
+    "valid_until": {
+      "type": "string",
+      "title": "Valid until (UTC ISO)",
+      "format": "date-time"
+    },
+    "active": {
+      "type": "boolean",
+      "title": "Active",
+      "default": true
+    },
+    "contact_id": {
+      "type": "string"
+    },
+    "contact_email": {
+      "type": "string"
+    },
+    "contact_phone": {
+      "type": "string"
+    },
+    "timezone": {
+      "type": "string"
+    },
+    "booking_context": {
+      "type": "string"
+    },
+    "invitation_status": {
+      "type": "string"
+    },
+    "invitation_message_id": {
+      "type": "string"
+    },
+    "invitation_error": {
+      "type": "string"
+    },
+    "invitation_attempt_at": {
+      "type": "string"
+    },
+    "invitation_payload": {
+      "type": "string"
+    },
+    "invitation_sent_at": {
+      "type": "string"
+    },
+    "booking_page_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "slug"
+  ]
+}

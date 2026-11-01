@@ -1,0 +1,122 @@
+{
+  "name": "BookingType",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "title": "Name (default / fallback)"
+    },
+    "name_en": {
+      "type": "string",
+      "title": "Name (EN)"
+    },
+    "name_fr": {
+      "type": "string",
+      "title": "Name (FR)"
+    },
+    "slug": {
+      "type": "string",
+      "title": "Slug"
+    },
+    "description": {
+      "type": "string",
+      "title": "Description (default / fallback)"
+    },
+    "description_en": {
+      "type": "string",
+      "title": "Description (EN)"
+    },
+    "description_fr": {
+      "type": "string",
+      "title": "Description (FR)"
+    },
+    "duration": {
+      "type": "number",
+      "title": "Duration (minutes)",
+      "default": 30
+    },
+    "minimum_notice_minutes": {
+      "type": "number",
+      "title": "Minimum notice (minutes)",
+      "default": 180
+    },
+    "buffer_before": {
+      "type": "number",
+      "title": "Buffer before (minutes)",
+      "default": 0
+    },
+    "buffer_after": {
+      "type": "number",
+      "title": "Buffer after (minutes)",
+      "default": 0
+    },
+    "max_per_day": {
+      "type": "number",
+      "title": "Max bookings per day",
+      "default": 8
+    },
+    "booking_window_days": {
+      "type": "number",
+      "title": "Booking window (days ahead)",
+      "default": 30
+    },
+    "brand": {
+      "type": "string",
+      "title": "Brand / context"
+    },
+    "location_type": {
+      "type": "string",
+      "title": "Location type",
+      "enum": [
+        "google_meet",
+        "phone",
+        "custom",
+        "physical"
+      ],
+      "default": "google_meet"
+    },
+    "location_value": {
+      "type": "string",
+      "title": "Location value (URL/phone/address)"
+    },
+    "active": {
+      "type": "boolean",
+      "title": "Active",
+      "default": true
+    },
+    "sort_order": {
+      "type": "number",
+      "title": "Sort order",
+      "default": 0
+    },
+    "contexts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "reminder_24h": {
+      "type": "string",
+      "enum": [
+        "inherit",
+        "on",
+        "off"
+      ],
+      "default": "inherit"
+    },
+    "reminder_1h": {
+      "type": "string",
+      "enum": [
+        "inherit",
+        "on",
+        "off"
+      ],
+      "default": "inherit"
+    }
+  },
+  "required": [
+    "name",
+    "slug",
+    "duration"
+  ]
+}

@@ -1,0 +1,6 @@
+OpenTalk Core
+Project code is distributed under the MIT license in LICENSE.
+Third-party dependencies retain their own copyrights and licenses.
+External provider accounts and brands remain subject to their respective terms.
+See THIRD_PARTY_NOTICES.md for the lockfile dependency inventory.
+No original database, provider credentials or Git history is included.

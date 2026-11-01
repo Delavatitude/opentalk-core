@@ -1,0 +1,17 @@
+{
+  "name": "Setting",
+  "type": "object",
+  "properties": {
+    "key": {
+      "type": "string",
+      "title": "Key"
+    },
+    "value": {
+      "type": "string",
+      "title": "Value"
+    }
+  },
+  "required": [
+    "key"
+  ]
+}

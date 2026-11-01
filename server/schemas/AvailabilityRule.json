@@ -1,0 +1,39 @@
+{
+  "name": "AvailabilityRule",
+  "type": "object",
+  "properties": {
+    "day_of_week": {
+      "type": "number",
+      "title": "Day of week (0=Sun ... 6=Sat)",
+      "minimum": 0,
+      "maximum": 6
+    },
+    "start_time": {
+      "type": "string",
+      "title": "Start time (HH:MM)"
+    },
+    "end_time": {
+      "type": "string",
+      "title": "End time (HH:MM)"
+    },
+    "timezone": {
+      "type": "string",
+      "title": "Timezone",
+      "default": "UTC"
+    },
+    "booking_type_id": {
+      "type": "string",
+      "title": "Booking type ID (empty = applies to all)"
+    },
+    "active": {
+      "type": "boolean",
+      "title": "Active",
+      "default": true
+    }
+  },
+  "required": [
+    "day_of_week",
+    "start_time",
+    "end_time"
+  ]
+}

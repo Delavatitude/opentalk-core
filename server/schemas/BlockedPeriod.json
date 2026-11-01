@@ -1,0 +1,29 @@
+{
+  "name": "BlockedPeriod",
+  "type": "object",
+  "properties": {
+    "start_at": {
+      "type": "string",
+      "title": "Start (UTC ISO)",
+      "format": "date-time"
+    },
+    "end_at": {
+      "type": "string",
+      "title": "End (UTC ISO)",
+      "format": "date-time"
+    },
+    "reason": {
+      "type": "string",
+      "title": "Reason"
+    },
+    "all_day": {
+      "type": "boolean",
+      "title": "All day",
+      "default": false
+    }
+  },
+  "required": [
+    "start_at",
+    "end_at"
+  ]
+}

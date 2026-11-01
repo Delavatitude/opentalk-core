@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 40% 94%;
+    --foreground: 28 16% 16%;
+    --card: 40 44% 98%;
+    --card-foreground: 28 16% 16%;
+    --popover: 40 44% 98%;
+    --popover-foreground: 28 16% 16%;
+    --primary: 19 42% 55%;
+    --primary-foreground: 40 50% 99%;
+    --secondary: 38 32% 92%;
+    --secondary-foreground: 28 16% 16%;
+    --muted: 36 26% 89%;
+    --muted-foreground: 32 10% 42%;
+    --accent: 19 42% 55%;
+    --accent-foreground: 40 50% 99%;
+    --destructive: 8 64% 54%;
+    --destructive-foreground: 40 50% 99%;
+    --border: 38 22% 86%;
+    --input: 38 22% 86%;
+    --ring: 19 42% 55%;
+    --emerald: 95 16% 47%;
+    --coral: 8 64% 54%;
+    --muted-text: 32 8% 38%;
+    --chart-1: 19 42% 55%;
+    --chart-2: 95 16% 47%;
+    --chart-3: 38 32% 60%;
+    --chart-4: 43 60% 66%;
+    --chart-5: 27 70% 62%;
+    --radius: 0.85rem;
+    --font-heading: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+    --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    --font-display: 'Fraunces', ui-serif, Georgia, serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --sidebar-background: 40 44% 98%;
+    --sidebar-foreground: 32 10% 42%;
+    --sidebar-primary: 19 42% 55%;
+    --sidebar-primary-foreground: 40 50% 99%;
+    --sidebar-accent: 38 32% 92%;
+    --sidebar-accent-foreground: 28 16% 16%;
+    --sidebar-border: 38 22% 86%;
+    --sidebar-ring: 19 42% 55%;
+  }
+
+  .dark {
+    --background: 40 40% 94%;
+    --foreground: 28 16% 16%;
+    --card: 40 44% 98%;
+    --card-foreground: 28 16% 16%;
+    --popover: 40 44% 98%;
+    --popover-foreground: 28 16% 16%;
+    --primary: 19 42% 55%;
+    --primary-foreground: 40 50% 99%;
+    --secondary: 38 32% 92%;
+    --secondary-foreground: 28 16% 16%;
+    --muted: 36 26% 89%;
+    --muted-foreground: 32 10% 42%;
+    --accent: 19 42% 55%;
+    --accent-foreground: 40 50% 99%;
+    --destructive: 8 64% 54%;
+    --destructive-foreground: 40 50% 99%;
+    --border: 38 22% 86%;
+    --input: 38 22% 86%;
+    --ring: 19 42% 55%;
+    --emerald: 95 16% 47%;
+    --coral: 8 64% 54%;
+    --muted-text: 32 8% 38%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer utilities {
+  .text-display {
+    font-family: var(--font-display);
+    font-size: clamp(2.75rem, 6vw, 4.75rem);
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+  }
+  .text-h1 {
+    font-size: 1.75rem;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+  }
+  .text-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+}

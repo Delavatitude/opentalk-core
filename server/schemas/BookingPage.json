@@ -1,0 +1,172 @@
+{
+  "name": "BookingPage",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "internal_name": {
+      "type": "string"
+    },
+    "context_key": {
+      "type": "string"
+    },
+    "default_booking_type_id": {
+      "type": "string"
+    },
+    "logo_url": {
+      "type": "string"
+    },
+    "brand_label": {
+      "type": "string"
+    },
+    "hero_visual_url": {
+      "type": "string"
+    },
+    "context_icon": {
+      "type": "string"
+    },
+    "published_json": {
+      "type": "string"
+    },
+    "published_slug": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "updated_at": {
+      "type": "string"
+    },
+    "headline_en": {
+      "type": "string"
+    },
+    "headline_fr": {
+      "type": "string"
+    },
+    "subtitle_en": {
+      "type": "string"
+    },
+    "subtitle_fr": {
+      "type": "string"
+    },
+    "intro_text_en": {
+      "type": "string"
+    },
+    "intro_text_fr": {
+      "type": "string"
+    },
+    "eyebrow_en": {
+      "type": "string"
+    },
+    "eyebrow_fr": {
+      "type": "string"
+    },
+    "footer_text_en": {
+      "type": "string"
+    },
+    "footer_text_fr": {
+      "type": "string"
+    },
+    "primary_cta_en": {
+      "type": "string"
+    },
+    "primary_cta_fr": {
+      "type": "string"
+    },
+    "secondary_copy_en": {
+      "type": "string"
+    },
+    "secondary_copy_fr": {
+      "type": "string"
+    },
+    "meta_title_en": {
+      "type": "string"
+    },
+    "meta_title_fr": {
+      "type": "string"
+    },
+    "meta_description_en": {
+      "type": "string"
+    },
+    "meta_description_fr": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "published",
+        "archived"
+      ],
+      "default": "draft"
+    },
+    "language_mode": {
+      "type": "string",
+      "enum": [
+        "auto",
+        "en",
+        "fr"
+      ],
+      "default": "auto"
+    },
+    "accent_style": {
+      "type": "string",
+      "enum": [
+        "terracotta",
+        "sage",
+        "blue",
+        "plum"
+      ],
+      "default": "terracotta"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true
+    },
+    "booking_type_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "type_overrides": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "booking_type_id": {
+            "type": "string"
+          },
+          "visible": {
+            "type": "boolean"
+          },
+          "name_en": {
+            "type": "string"
+          },
+          "name_fr": {
+            "type": "string"
+          },
+          "description_en": {
+            "type": "string"
+          },
+          "description_fr": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "github_repo_url": {
+      "type": "string",
+      "description": "Optional public GitHub repository URL. Empty hides the homepage source CTA."
+    }
+  },
+  "required": [
+    "name",
+    "slug",
+    "context_key"
+  ]
+}
