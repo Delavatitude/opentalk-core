@@ -158,9 +158,9 @@ export default function SetupGuide({ data, refresh, onCompleted }) {
       </div>}
       {error && <p role="alert" className="text-sm text-destructive">{error}</p>}
       {message && <p role="status" className="text-sm text-primary">{message}</p>}
-      <div className="border-t pt-4 flex flex-wrap justify-between gap-3">
+      <div className="border-t pt-4 flex items-center justify-between gap-3">
         <button disabled={busy || step === 0} className={button} onClick={() => setStep(v => v - 1)}><ArrowLeft className="w-4 h-4"/>{copy("Précédent", "Previous")}</button>
-        {step > 0 && step < 4 && <button disabled={busy} className={button} onClick={next}>{copy("Enregistrer dans le formulaire, puis continuer", "Save in the form, then continue")}<ArrowRight className="w-4 h-4"/></button>}
+        {step > 0 && step < 4 && <button disabled={busy} className={button + " whitespace-nowrap"} onClick={next}>{copy("Enregistrer puis continuer", "Save and continue")}<ArrowRight className="w-4 h-4"/></button>}
         {step === 4 && <button type="button" disabled={busy || !state.ready} onClick={finish} className={button + " bg-primary text-primary-foreground"}>{busy ? <Loader2 className="w-4 h-4 animate-spin"/> : <CheckCircle2 className="w-4 h-4"/>}{copy("Valider mon lien et terminer", "Validate my booking link and finish")}</button>}
       </div>
     </div>
